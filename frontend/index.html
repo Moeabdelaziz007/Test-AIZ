@@ -3,116 +3,374 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Energy-Aware Task Agent - Blockchain-based intelligent task management" />
-    <title>Energy-Aware Agent | Intelligent Task Management</title>
+    <meta name="description" content="Energy-Aware Task Agent - AIZ Protocol powered intelligent task management" />
+    <title>Energy-Aware Agent | AIZ Protocol</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Energy-Aware Task Agent</h1>
-        <p class="subtitle">Intelligent blockchain-based task evaluation and management</p>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-content">
+          <div class="logo-section">
+            <div class="logo-icon">⚡</div>
+            <div>
+              <h1>Energy-Aware Agent</h1>
+              <p class="subtitle">AIZ Protocol • Intelligent Task Management</p>
+            </div>
+          </div>
+          <div class="protocol-badge">
+            <span class="badge-label">Protocol</span>
+            <span class="badge-value">v2.0</span>
+          </div>
+        </div>
       </header>
 
-      <!-- Wallet Connection Section -->
-      <section class="wallet-section">
-        <button id="connect-btn" class="btn-primary" aria-label="Connect MetaMask wallet">
-          <span class="btn-icon">🔗</span>
-          <span id="connect-text">Connect Wallet</span>
-        </button>
-        <div id="wallet-status" class="wallet-status" role="status" aria-live="polite">
-          <span class="status-indicator"></span>
-          <span id="wallet-address">Not connected</span>
+      <div class="main-layout">
+        <!-- Sidebar - Agent Dashboard -->
+        <aside class="sidebar">
+          <!-- Agent Status Panel -->
+          <section class="agent-status-panel glass-card">
+            <h2 class="section-title">
+              <span class="icon">🤖</span>
+              Agent Status
+            </h2>
+            
+            <div class="agent-info">
+              <div class="agent-id-display">
+                <span class="label">Agent ID</span>
+                <span class="value" id="display-agent-id">EnergyAwareAgent_v1</span>
+                <span class="version-badge">v1.0</span>
+              </div>
+              
+              <div class="status-indicator-wrapper">
+                <div class="status-dot" id="agent-status-dot"></div>
+                <span id="agent-status-text">Initializing...</span>
+              </div>
+            </div>
+
+            <!-- Vitality Meter -->
+            <div class="vitality-section">
+              <div class="meter-header">
+                <span class="label">Vitality</span>
+                <span class="value" id="vitality-value">100</span>
+              </div>
+              <div class="vitality-meter">
+                <div class="vitality-fill" id="vitality-fill" style="width: 100%"></div>
+                <div class="vitality-glow"></div>
+              </div>
+            </div>
+
+            <!-- Network Efficiency -->
+            <div class="efficiency-section">
+              <div class="meter-header">
+                <span class="label">Network Efficiency</span>
+                <span class="value" id="efficiency-value">0%</span>
+              </div>
+              <div class="efficiency-meter">
+                <div class="efficiency-fill" id="efficiency-fill" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <!-- Performance Tier -->
+            <div class="performance-tier">
+              <div class="tier-badge" id="tier-badge">
+                <span class="tier-icon">🥉</span>
+                <span class="tier-name">Bronze</span>
+              </div>
+              <div class="tier-multiplier" id="tier-multiplier">1.0x Rewards</div>
+            </div>
+          </section>
+
+          <!-- AIZ Capabilities -->
+          <section class="capabilities-panel glass-card">
+            <h2 class="section-title">
+              <span class="icon">🛠️</span>
+              AIZ Capabilities
+            </h2>
+            <div class="capability-badges">
+              <div class="capability-badge" data-capability="revenue">
+                <span class="cap-icon">💰</span>
+                <span class="cap-name">Revenue Gen</span>
+              </div>
+              <div class="capability-badge" data-capability="defi">
+                <span class="cap-icon">⚡</span>
+                <span class="cap-name">DeFi Tools</span>
+              </div>
+              <div class="capability-badge" data-capability="analytics">
+                <span class="cap-icon">📊</span>
+                <span class="cap-name">Analytics</span>
+              </div>
+              <div class="capability-badge" data-capability="automation">
+                <span class="cap-icon">🤖</span>
+                <span class="cap-name">Automation</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Performance Metrics -->
+          <section class="metrics-panel glass-card">
+            <h2 class="section-title">
+              <span class="icon">📈</span>
+              Performance
+            </h2>
+            <div class="metrics-grid">
+              <div class="metric-item">
+                <div class="metric-value" id="tasks-completed">0</div>
+                <div class="metric-label">Tasks Completed</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-value" id="success-rate">0%</div>
+                <div class="metric-label">Success Rate</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-value" id="decisions-logged">0</div>
+                <div class="metric-label">Decisions Logged</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-value" id="reward-multiplier">1.0x</div>
+                <div class="metric-label">Reward Multiplier</div>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+          <!-- Wallet Section -->
+          <section class="wallet-section glass-card">
+            <div class="wallet-header">
+              <h2 class="section-title">
+                <span class="icon">💼</span>
+                Wallet Connection
+              </h2>
+              <button id="connect-btn" class="btn-primary">
+                <span class="btn-icon">🔗</span>
+                <span id="connect-text">Connect Wallet</span>
+              </button>
+            </div>
+            
+            <div class="wallet-details">
+              <div class="wallet-info-grid">
+                <div class="wallet-info-item">
+                  <span class="label">Status</span>
+                  <div id="wallet-status" class="wallet-status">
+                    <span class="status-indicator"></span>
+                    <span id="wallet-address">Not connected</span>
+                  </div>
+                </div>
+                <div class="wallet-info-item">
+                  <span class="label">Network</span>
+                  <div class="network-display" id="network-display">
+                    <span class="network-icon">🌐</span>
+                    <span id="network-name">Not connected</span>
+                  </div>
+                </div>
+                <div class="wallet-info-item">
+                  <span class="label">Balance</span>
+                  <div class="balance-display" id="balance-display">
+                    <span id="balance-value">0.0000</span>
+                    <span class="balance-currency">ETH</span>
+                  </div>
+                </div>
+                <div class="wallet-info-item">
+                  <span class="label">Gas Price</span>
+                  <div class="gas-display" id="gas-display">
+                    <span id="gas-value">--</span>
+                    <span class="gas-unit">Gwei</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- DeFi Strategies -->
+          <section class="strategies-section glass-card">
+            <h2 class="section-title">
+              <span class="icon">💎</span>
+              DeFi Strategies
+            </h2>
+            <div class="strategies-grid">
+              <div class="strategy-card" data-strategy="yield">
+                <div class="strategy-icon">🌾</div>
+                <div class="strategy-info">
+                  <div class="strategy-name">Yield Farming</div>
+                  <div class="strategy-apy">45.5% APY</div>
+                </div>
+                <div class="strategy-status">Available</div>
+              </div>
+              <div class="strategy-card" data-strategy="staking">
+                <div class="strategy-icon">🔒</div>
+                <div class="strategy-info">
+                  <div class="strategy-name">Staking</div>
+                  <div class="strategy-apy">18.2% APY</div>
+                </div>
+                <div class="strategy-status">Available</div>
+              </div>
+              <div class="strategy-card" data-strategy="liquidity">
+                <div class="strategy-icon">💧</div>
+                <div class="strategy-info">
+                  <div class="strategy-name">Liquidity Mining</div>
+                  <div class="strategy-apy">12.8% APY</div>
+                </div>
+                <div class="strategy-status">Available</div>
+              </div>
+              <div class="strategy-card" data-strategy="compound">
+                <div class="strategy-icon">🔄</div>
+                <div class="strategy-info">
+                  <div class="strategy-name">Auto-Compound</div>
+                  <div class="strategy-apy">52.3% APY</div>
+                </div>
+                <div class="strategy-status">Available</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Task Submission -->
+          <section class="task-section glass-card">
+            <h2 class="section-title">
+              <span class="icon">⚡</span>
+              Submit Task
+            </h2>
+            <form id="task-form" class="task-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="task-desc">Task Description</label>
+                  <input 
+                    id="task-desc" 
+                    type="text" 
+                    placeholder="Enter task description..."
+                    required
+                  />
+                </div>
+                <div class="form-group form-group-small">
+                  <label for="task-cost">Energy Cost</label>
+                  <input 
+                    id="task-cost" 
+                    type="number" 
+                    min="0"
+                    step="1"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn-primary btn-submit">
+                <span class="btn-icon">🚀</span>
+                Submit Task
+              </button>
+            </form>
+          </section>
+
+          <!-- Agent Configuration -->
+          <section class="config-section glass-card">
+            <h2 class="section-title">
+              <span class="icon">⚙️</span>
+              Agent Configuration
+            </h2>
+            <div class="config-form">
+              <div class="form-group">
+                <label for="agent-id-input">Agent ID</label>
+                <div class="input-group">
+                  <input 
+                    id="agent-id-input" 
+                    type="text" 
+                    value="EnergyAwareAgent_v1"
+                  />
+                  <button id="update-agent-id-btn" class="btn-secondary">
+                    <span class="btn-icon">✓</span>
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Decision Display -->
+          <section class="decision-section glass-card" id="decision-section" style="display: none;">
+            <h2 class="section-title">
+              <span class="icon">🔑</span>
+              Proof of Thought
+            </h2>
+            <div class="decision-display">
+              <div class="decision-content">
+                <div class="decision-label">Decision ID</div>
+                <div class="decision-value" id="decision-id">-</div>
+              </div>
+              <button id="copy-decision-btn" class="btn-icon-only" title="Copy to clipboard">
+                📋
+              </button>
+            </div>
+          </section>
+
+          <!-- Intent Bus -->
+          <section class="intent-section glass-card">
+            <h2 class="section-title">
+              <span class="icon">📡</span>
+              Intent Bus
+            </h2>
+            <div class="intent-controls">
+              <button class="btn-secondary" id="post-intent-btn">
+                <span class="btn-icon">📤</span>
+                Post Intent
+              </button>
+              <div class="intent-stats">
+                <span class="stat-item">
+                  <span class="stat-label">Active:</span>
+                  <span class="stat-value" id="active-intents">0</span>
+                </span>
+                <span class="stat-item">
+                  <span class="stat-label">Solved:</span>
+                  <span class="stat-value" id="solved-intents">0</span>
+                </span>
+              </div>
+            </div>
+            <div class="intent-list" id="intent-list">
+              <div class="empty-state">No active intents</div>
+            </div>
+          </section>
+
+          <!-- Console Logs -->
+          <section class="logs-section glass-card">
+            <div class="logs-header">
+              <h2 class="section-title">
+                <span class="icon">📝</span>
+                Console Logs
+              </h2>
+              <div class="logs-actions">
+                <button id="copy-logs-btn" class="btn-icon-only" title="Copy logs">
+                  📋
+                </button>
+                <button id="clear-logs-btn" class="btn-icon-only" title="Clear logs">
+                  🗑️
+                </button>
+              </div>
+            </div>
+            <div id="logs" class="logs-console"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Transaction Modal -->
+    <div id="tx-modal" class="modal">
+      <div class="modal-content glass-card">
+        <div class="modal-header">
+          <h3>Transaction Details</h3>
+          <button class="modal-close" id="modal-close">×</button>
         </div>
-      </section>
-
-      <!-- Task Submission Form -->
-      <section class="task-form">
-        <h2>Submit Task</h2>
-        <form id="task-form" aria-label="Task submission form">
-          <div class="form-group">
-            <label for="task-desc">Task Description</label>
-            <input 
-              id="task-desc" 
-              type="text" 
-              placeholder="Enter task description..."
-              aria-required="true"
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="task-cost">Energy Cost</label>
-            <input 
-              id="task-cost" 
-              type="number" 
-              min="0"
-              step="1"
-              placeholder="0"
-              aria-required="true"
-              required
-            />
-          </div>
-
-          <button type="submit" id="submit-task-btn" class="btn-primary btn-submit">
-            <span class="btn-icon">⚡</span>
-            Submit Task
-          </button>
-        </form>
-      </section>
-
-      <!-- Agent Configuration -->
-      <section class="agent-config">
-        <h2>Agent Configuration</h2>
-        <div class="form-group">
-          <label for="agent-id-input">Agent ID</label>
-          <div class="input-group">
-            <input 
-              id="agent-id-input" 
-              type="text" 
-              value="EnergyAwareAgent_v1"
-              aria-label="Agent identifier"
-            />
-            <button id="update-agent-id-btn" class="btn-secondary" aria-label="Update agent ID">
-              Update
-            </button>
-          </div>
+        <div class="modal-body" id="modal-body">
+          <!-- Transaction details will be inserted here -->
         </div>
-      </section>
-
-      <!-- Decision ID Display -->
-      <section class="decision-section" id="decision-section" style="display: none;">
-        <h2>Proof of Thought</h2>
-        <div class="decision-display">
-          <div class="decision-label">Decision ID:</div>
-          <div class="decision-value" id="decision-id">-</div>
-          <button id="copy-decision-btn" class="btn-icon-only" aria-label="Copy decision ID" title="Copy to clipboard">
-            📋
-          </button>
-        </div>
-      </section>
-
-      <!-- Logs Section -->
-      <section class="logs-section">
-        <div class="logs-header">
-          <h2>Console Logs</h2>
-          <div class="logs-actions">
-            <button id="copy-logs-btn" class="btn-icon-only" aria-label="Copy logs" title="Copy logs to clipboard">
-              📋
-            </button>
-            <button id="clear-logs-btn" class="btn-icon-only" aria-label="Clear logs" title="Clear all logs">
-              🗑️
-            </button>
-          </div>
-        </div>
-        <div id="logs" class="logs-console" role="log" aria-live="polite" aria-atomic="false"></div>
-      </section>
-
-      <!-- Toast Notification -->
-      <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="scripts/app.js"></script>
   </body>
 </html>

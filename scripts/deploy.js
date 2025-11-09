@@ -37,37 +37,4 @@ async function main() {
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
-});const hre = require('hardhat');
-
-async function main() {
-  const MockOrchestrator = await hre.ethers.getContractFactory('MockOrchestrator');
-  const orchestrator = await MockOrchestrator.deploy();
-  await orchestrator.deployed();
-
-  const MockConsciousDecisionLogger = await hre.ethers.getContractFactory('MockConsciousDecisionLogger');
-  const logger = await MockConsciousDecisionLogger.deploy();
-  await logger.deployed();
-
-  const MockIntentBus = await hre.ethers.getContractFactory('MockIntentBus');
-  const intentBus = await MockIntentBus.deploy();
-  await intentBus.deployed();
-
-  const MockMEVHarvester = await hre.ethers.getContractFactory('MockMEVHarvester');
-  const mev = await MockMEVHarvester.deploy(100);
-  await mev.deployed();
-
-  const EnergyAwareAgent = await hre.ethers.getContractFactory('EnergyAwareAgent');
-  const agent = await EnergyAwareAgent.deploy(orchestrator.address, logger.address, intentBus.address, mev.address);
-  await agent.deployed();
-
-  console.log('Orchestrator:', orchestrator.address);
-  console.log('Logger:', logger.address);
-  console.log('IntentBus:', intentBus.address);
-  console.log('MEVHarvester:', mev.address);
-  console.log('Agent:', agent.address);
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
 });
