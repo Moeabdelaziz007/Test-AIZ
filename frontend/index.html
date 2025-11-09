@@ -1,28 +1,116 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Energy Aware Agent — Interface</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Energy-Aware Task Agent - Blockchain-based intelligent task management" />
+    <title>Energy-Aware Agent | Intelligent Task Management</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Energy-Aware Task Agent</h1>
-    <button id="connect-btn">Connect Wallet</button>
+    <div class="container">
+      <header>
+        <h1>Energy-Aware Task Agent</h1>
+        <p class="subtitle">Intelligent blockchain-based task evaluation and management</p>
+      </header>
 
-    <div>
-      <label>Task Description: <input id="task-desc" type="text" /></label>
-    </div>
-    <div>
-      <label>Task Energy Cost: <input id="task-cost" type="number" /></label>
-    </div>
-    <button id="submit-task-btn">Submit Task to Agent</button>
-    <div style="margin-top:12px;">
-      <label>Agent ID: <input id="agent-id-input" type="text" value="EnergyAwareAgent_v1" /></label>
-      <button id="update-agent-id-btn">Update Agent ID</button>
-    </div>
+      <!-- Wallet Connection Section -->
+      <section class="wallet-section">
+        <button id="connect-btn" class="btn-primary" aria-label="Connect MetaMask wallet">
+          <span class="btn-icon">🔗</span>
+          <span id="connect-text">Connect Wallet</span>
+        </button>
+        <div id="wallet-status" class="wallet-status" role="status" aria-live="polite">
+          <span class="status-indicator"></span>
+          <span id="wallet-address">Not connected</span>
+        </div>
+      </section>
 
-    <h2>Logs</h2>
-    <div id="logs" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 8px; max-width: 800px;"></div>
+      <!-- Task Submission Form -->
+      <section class="task-form">
+        <h2>Submit Task</h2>
+        <form id="task-form" aria-label="Task submission form">
+          <div class="form-group">
+            <label for="task-desc">Task Description</label>
+            <input 
+              id="task-desc" 
+              type="text" 
+              placeholder="Enter task description..."
+              aria-required="true"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="task-cost">Energy Cost</label>
+            <input 
+              id="task-cost" 
+              type="number" 
+              min="0"
+              step="1"
+              placeholder="0"
+              aria-required="true"
+              required
+            />
+          </div>
+
+          <button type="submit" id="submit-task-btn" class="btn-primary btn-submit">
+            <span class="btn-icon">⚡</span>
+            Submit Task
+          </button>
+        </form>
+      </section>
+
+      <!-- Agent Configuration -->
+      <section class="agent-config">
+        <h2>Agent Configuration</h2>
+        <div class="form-group">
+          <label for="agent-id-input">Agent ID</label>
+          <div class="input-group">
+            <input 
+              id="agent-id-input" 
+              type="text" 
+              value="EnergyAwareAgent_v1"
+              aria-label="Agent identifier"
+            />
+            <button id="update-agent-id-btn" class="btn-secondary" aria-label="Update agent ID">
+              Update
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Decision ID Display -->
+      <section class="decision-section" id="decision-section" style="display: none;">
+        <h2>Proof of Thought</h2>
+        <div class="decision-display">
+          <div class="decision-label">Decision ID:</div>
+          <div class="decision-value" id="decision-id">-</div>
+          <button id="copy-decision-btn" class="btn-icon-only" aria-label="Copy decision ID" title="Copy to clipboard">
+            📋
+          </button>
+        </div>
+      </section>
+
+      <!-- Logs Section -->
+      <section class="logs-section">
+        <div class="logs-header">
+          <h2>Console Logs</h2>
+          <div class="logs-actions">
+            <button id="copy-logs-btn" class="btn-icon-only" aria-label="Copy logs" title="Copy logs to clipboard">
+              📋
+            </button>
+            <button id="clear-logs-btn" class="btn-icon-only" aria-label="Clear logs" title="Clear all logs">
+              🗑️
+            </button>
+          </div>
+        </div>
+        <div id="logs" class="logs-console" role="log" aria-live="polite" aria-atomic="false"></div>
+      </section>
+
+      <!-- Toast Notification -->
+      <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
     <script src="scripts/app.js"></script>
