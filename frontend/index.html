@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Energy Aware Agent — Interface</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Energy-Aware Task Agent</h1>
+    <button id="connect-btn">Connect Wallet</button>
+
+    <div>
+      <label>Task Description: <input id="task-desc" type="text" /></label>
+    </div>
+    <div>
+      <label>Task Energy Cost: <input id="task-cost" type="number" /></label>
+    </div>
+    <button id="submit-task-btn">Submit Task to Agent</button>
+    <div style="margin-top:12px;">
+      <label>Agent ID: <input id="agent-id-input" type="text" value="EnergyAwareAgent_v1" /></label>
+      <button id="update-agent-id-btn">Update Agent ID</button>
+    </div>
+
+    <h2>Logs</h2>
+    <div id="logs" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 8px; max-width: 800px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
