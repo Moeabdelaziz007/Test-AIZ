@@ -18,5 +18,16 @@ module.exports = {
       url: process.env.SEPOLIA_RPC_URL || '',
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     }
+    ,
+    opSepolia: {
+      // Public OP Sepolia RPC (rate-limited, good for testing)
+      url: process.env.OP_SEPOLIA_RPC_URL || 'https://sepolia.optimism.io',
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
+    baseSepolia: {
+      // Public Base Sepolia RPC (rate-limited, good for testing)
+      url: process.env.BASE_SEPOLIA_RPC_URL || 'https://sepolia.base.org',
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    }
   }
 };
